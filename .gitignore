@@ -124,3 +124,16 @@ _modules/*
 
 /results/
 /phpunit.xml
+
+# Local database credentials
+.env
+.env.*
+!.env.example
+
+# Generated CodeIgniter files
+/writable/cache/*
+/writable/logs/*
+/writable/session/*
+
+# Uploaded profile pictures
+/public/uploads/avatars/*

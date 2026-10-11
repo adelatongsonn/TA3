@@ -2,7 +2,7 @@
 namespace App\Models;
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class UsersModel extends Model
 {
     protected $table = 'users';
     protected $primaryKey = 'id';
@@ -10,6 +10,9 @@ class UserModel extends Model
     protected $allowedFields = [
         'username',
         'full_name',
-        'created_at'
+        'created_at',
+        'avatar',
     ];
+
+    protected $useTimestamps = false;
 }

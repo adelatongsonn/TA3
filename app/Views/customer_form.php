@@ -1,0 +1,93 @@
+<?php helper(['form', 'url']); ?>
+
+<?= $this->include('partials/header') ?>
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
+        <div>
+            <h1 class="mb-1"><?= esc($title ?? 'Add New Customer') ?></h1>
+            <p class="text-muted mb-0">
+                Enter the customer’s contact details below.
+            </p>
+        </div>
+
+        <a href="<?= '/customers' ?>" class="btn btn-outline-secondary">
+            &larr; Back
+        </a>
+    </div>
+
+    <?php $errors = $errors ?? []; ?>
+
+    <?php if (! empty($errors)): ?>
+        <div class="alert alert-danger" role="alert">
+            <strong>Please correct the following:</strong>
+            <ul class="mb-0 mt-2">
+                <?php foreach ($errors as $error): ?>
+                    <li><?= esc($error) ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+            <form
+                action="<?= '/customers/new' ?>"
+                method="post"
+                novalidate
+            >
+                <?= csrf_field() ?>
+
+                <div class="mb-3">
+                    <label for="full_name" class="form-label fw-semibold">
+                        Full name <span class="text-danger">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="full_name"
+                        name="full_name"
+                        value="<?= esc($formData['full_name'] ?? '') ?>"
+                        placeholder="Enter full name"
+                    >
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label fw-semibold">
+                        Email address <span class="text-danger">*</span>
+                    </label>
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        name="email"
+                        value="<?= esc($formData['email'] ?? '') ?>"
+                        placeholder="juandelacruz@gmail.com"
+                    >
+                </div>
+
+                <div class="mb-4">
+                    <label for="phone" class="form-label fw-semibold">
+                        Phone number <span class="text-muted">(optional)</span>
+                    </label>
+                    <input
+                        type="tel"
+                        class="form-control"
+                        id="phone"
+                        name="phone"
+                        value="<?= esc($formData['phone'] ?? '') ?>"
+                        placeholder="Enter phone number"
+                    >
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-success fw-semibold">
+                        Save Customer
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<?= $this->include('partials/footer') ?>
